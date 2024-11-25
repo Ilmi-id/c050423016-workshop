@@ -43,59 +43,59 @@ Payment {{ $workshop->name }}
                                 <span class="font-medium text-aktiv-grey">09:30 AM - Finish</span>
                             </div>
                         </div>
-                        <h3 class="font-Neue-Plak-bold text-xl">Mastering the Art of Public Speaking: Practical Tips and Powerful Techniques</h3>
+                        <h3 class="font-Neue-Plak-bold text-xl">WEB</h3>
                     </div>
                 </div>
                 <div id="closes-section" class="accordion flex flex-col gap-8 transition-all duration-300 mt-8 group-has-[:checked]:mt-0 group-has-[:checked]:!h-0 overflow-hidden">
                     <div class="flex flex-col gap-4">
                         <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">Instructor Details</h2>
-                        <div class="flex items-center gap-3 rounded-xl border border-[#E6E7EB] p-4">
+                        <div class="flex items-center gap-3">
                             <div class="flex w-16 h-16 shrink-0 rounded-full overflow-hidden bg-[#D9D9D9]">
-                                <img src="{{asset('assets/images/photos/photo3.png')}}" class="w-full h-full object-cover" alt="photo">
+                                <img src="{{Storage::url($workshop->instructor->avatar)}}" class="w-full h-full object-cover" alt="photo">
                             </div>
                             <div class="flex flex-col gap-[2px] flex-1">
-                                <p class="font-semibold text-lg leading-[27px]">Megamore S Qie</p>
-                                <p class="font-medium text-aktiv-grey">Motivator Intructor</p>
+                                <p class="font-semibold text-lg leading-[27px]">
+                                    {{ $workshop->instructor->name }}
+                                </p>
+                                <p class="font-medium text-aktiv-grey">
+                                    {{ $workshop->instructor->occupation }}
+                                </p>
                             </div>
-                            <img src="{{asset('assets/images/icons/verify.svg')}}" class="flex w-[62px] h-[62px] shrink-0" alt="icon">
-                        </div>
                     </div>
                     <div class="flex flex-col gap-4">
                         <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">This workshop will teach</h2>
                         <div class="flex flex-col gap-6">
+
+                            @forelse($workshop->benefits as $itemBenefit)
                             <div class="flex items-center gap-2">
                                 <img src="{{asset('assets/images/icons/tick-circle.svg')}}" class="w-6 h-6 flex shrink-0" alt="icon">
-                                <p class="font-semibold text-lg leading-[27px]">Crafting Compelling Messages</p>
+                                <p class="font-semibold text-lg leading-[27px]">
+                                    {{ $itemBenefit->name }}
+                                </p>
                             </div>
-                            <div class="flex items-center gap-2">
-                                <img src="{{asset('assets/images/icons/tick-circle.svg')}}" class="w-6 h-6 flex shrink-0" alt="icon">
-                                <p class="font-semibold text-lg leading-[27px]">Enhancing Delivery Skills</p>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <img src="{{asset('assets/images/icons/tick-circle.svg')}}" class="w-6 h-6 flex shrink-0" alt="icon">
-                                <p class="font-semibold text-lg leading-[27px]">Engaging Your Audience</p>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <img src="{{asset('assets/images/icons/tick-circle.svg')}}" class="w-6 h-6 flex shrink-0" alt="icon">
-                                <p class="font-semibold text-lg leading-[27px]">Practical Exercises</p>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <img src="{{asset('assets/images/icons/tick-circle.svg')}}" class="w-6 h-6 flex shrink-0" alt="icon">
-                                <p class="font-semibold text-lg leading-[27px]">Personal Development Plan</p>
-                            </div>
+                            @empty
+                            <p>belum ada data benefit</p>
+                            @endforelse
+                        </div>
                         </div>
                     </div>
                     <div class="flex flex-col gap-4">
                         <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">Location Details</h2>
-                        <div class="flex flex-col gap-4 rounded-xl border border-[#E6E7EB] p-5 pb-[21px]">
-                            <div class="flex w-full h-[180px] rounded-xl overflow-hidden">
-                                <img src="{{asset('assets/images/thumbnails/location.png')}}" class="w-full h-full object-cover" alt="location">
+                        <div class="relative flex w-full h-[360px] rounded-2xl overflow-hidden bg-[#D9D9D9]">
+                            <div class="relative flex w-full h-[360px] rounded-2xl overflow-hidden bg-[#D9D9D9]">
+                                <div class="absolute left-5 top-1/2 transform -translate-y-1/2 flex flex-col w-[260px] h-fit max-h-[320px] gap-4 rounded-2xl p-5 bg-white">
+                                    <div class="flex w-full h-[124px] rounded-xl overflow-hidden">
+                                        <img src="{{Storage::url($workshop->venue_thumbnail)}}" class="w-full h-full object-cover" alt="location">
+                                    </div>
+                                    <div class="flex flex-col gap-3 justify-between">
+                                        <p class="font-medium leading-[25.6px] text-aktiv-grey line-clamp-4">
+                                            {{ $workshop->address }}
+                                        </p>
+                                        <a href="https://www.google.com/maps/place/{{ $workshop->address }}" class="font-semibold text-aktiv-orange">View in Google Maps</a>
+                                    </div>
+                                </div>
+                                <img src="{{Storage::url($workshop->bg_map)}}" class="w-full h-full object-cover" alt="maps">
                             </div>
-                            <div class="flex flex-col gap-3">
-                                <p class="font-medium leading-[25.6px] text-aktiv-grey">101 Cendrawasih Road, Melati, Bandung Wetan, Bandung, West Java, 40116, Indonesia</p>
-                                <a href="#" class="font-semibold text-aktiv-orange">View in Google Maps</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <label class="group mt-8">
