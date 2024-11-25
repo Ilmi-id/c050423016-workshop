@@ -20,4 +20,3 @@ Route::get('/booking/{workshop:slug}', [BookingController::class, 'booking'])->n
 Route::post('/booking/{workshop:slug}', [BookingController::class, 'bookingStore'])->name('front.booking_store');
 
 Route::get('/booking/finished/{bookingTransaction}', [BookingController::class, 'bookingFinished'])->name('front.booking_finished');
-
